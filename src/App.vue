@@ -2,38 +2,44 @@
 export default {
   data() {
     return {
-            brand:'Nissan', model:'Skyline', reg_year:2018
-    }
-  },
+      activeColor: 'red',
+      fontSize: 30,
+      activeClass: 'active',
+      errorClass: 'text-danger',
+      paddingBottom: 'py-8',
+      tcenter: 'text-center',
+      mbottom: 'mb-3',
 
-  // Computed properties
-  computed:{
-            car_age(){
-                return new Date().getFullYear() - this.reg_year
-            },
-            full_name:{
-                get(){
-                    return this.brand+' '+this.model
-                },
-                set(newName){
-                    this.brand = newName[0]
-                    this.model = newName[1]
-                }
-            }
-        }
+      cloudy: true,
+      interns: ['Marvin', 'Savelline', 'Evans', 'Steve'],
+    }
+  }
 }
 </script>
 
 <template>
+  <div :class="[activeClass, paddingBottom, tcenter, mbottom, container]">Class Binding</div>
+  <div :style="{ backgroundColor: activeColor, fontSize: fontSize + 'px' }" class="text-center">Style Binding</div>
 
-  <h1><b>{{brand}}</b> <i>{{model}}</i> <span>{{reg_year}}</span></h1>
-  <h2>Age: {{car_age}}</h2>
+  <div class="text-center">
+    <h2 class="font-extrabold mt-4 bg-green-300 p-6">Conditional Rendering</h2>
+    
+    <p v-if="cloudy">It is cloudy today</p>
+    <p v-else>There are no clouds today</p>
+  </div>
+  
+  
+  <div class="text-center">
+    <h2 class="font-extrabold mt-4 bg-yellow-300 p-6">List Rendering</h2>
+      <ul>
+        <li v-for="intern in interns">{{intern}}</li>
+      </ul>
+  </div>
 
 </template>
 
 <style scoped>
-b{color:#46ea0f}
-i{color:#6fddff}
-span{color:#C34A36}
-h2{background-color:#e61739;color:#F9F871;padding:5px;text-align:center;font-size:42px}
+  .active {
+    background-color:aqua;
+  }
 </style>
